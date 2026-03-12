@@ -1,0 +1,96 @@
+# =========================
+# Python Bytecode / Cache
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Environment Variables / Secrets
+# =========================
+.env
+.env.*
+*.env
+secrets.json
+credentials.json
+apikeys.json
+config/secrets.yml
+
+# =========================
+# Virtual Environments
+# =========================
+venv/
+env/
+ENV/
+.venv/
+
+# =========================
+# Distribution / Packaging
+# =========================
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Unit Test / Coverage
+# =========================
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.pytest_cache/
+
+# =========================
+# Jupyter Notebook
+# =========================
+.ipynb_checkpoints
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Database / Local files
+# =========================
+*.sqlite3
+db.sqlite3
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.bak
+*.old
