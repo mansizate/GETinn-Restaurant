@@ -115,6 +115,8 @@ This repository represents my work with the GETinn Restaurant project.
                     │       Admin         │
                     │ Management Panel    │
                     └─────────────────────┘
+
+```
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
