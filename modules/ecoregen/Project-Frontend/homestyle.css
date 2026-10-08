@@ -1,0 +1,117 @@
+/* Color variables */
+:root {
+    --royal-yellow: #f8e300; /* Royal Yellow */
+    --purple-color: #16213e; /* Dark Purple */
+    --white-color: #fff; /* White */
+    --gray-color: #ccc; /* Gray for contrast */
+    --black-color: #000; /* Black color */
+}
+
+/* General styles */
+body {
+    background: var(--purple-color) !important;
+    color: var(--white-color);
+}
+
+/* Navigation bar link color */
+.nav-item .nav-link {
+    color: var(--royal-yellow);
+}
+
+/* Hero section background image */
+.hero {
+    height: 100vh;
+    background-image: url("close-up-hand-holding-wooden-board.jpg");
+    background-repeat: no-repeat;
+    background-position: 60% 0%;
+    background-size: cover;
+    background-attachment: fixed;
+    color: var(--royal-yellow);
+}
+
+/* Headings and text color */
+h1, h2, h3, h4, h5, h6, p {
+    color: var(--white-color);
+}
+
+/* Skills and portfolio sections */
+#skills i {
+    height: 100px;
+    width: 100px;
+    color: var(--royal-yellow);
+}
+
+#portfolio img {
+    height: 300px;
+    object-fit: cover;
+}
+
+/* About section styling */
+#about .img,
+#about img,
+.hire-text h2 {
+    position: relative;
+}
+
+#about .img::before {
+    content: "";
+    left: 50%;
+    width: 4px;
+    position: absolute;
+    height: calc(100% + 140px);
+    background: var(--royal-yellow);
+}
+
+#about img,
+#about .hire-text h2 {
+    width: 140px;
+}
+
+#about .hire-text h2 {
+    height: 140px;
+    color: var(--royal-yellow);
+}
+
+/* Social icons */
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    color: var(--royal-yellow);
+}
+
+footer .social-icons a {
+    width: 30px;
+    height: 30px;
+}
+
+/* CV image */
+#cv img {
+    width: 230px;
+}
+
+/* Contact section background image */
+#contact {
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-image: url("vecteezy_garbage-in-the-old-factory-selective-focus-shallow-depth_27206106.jpg");
+    color: var(--black-color);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 990px) {
+    #skills .card {
+        width: calc(100% / 2 - 10px) !important;
+    }
+}
+
+@media screen and (max-width: 668px) {
+    #skills .card,
+    #portfolio .card-wrapper {
+        width: 100% !important;
+    }
+    #about .hire-text h2 {
+        height: 70px;
+        width: 70px;
+    }
+}

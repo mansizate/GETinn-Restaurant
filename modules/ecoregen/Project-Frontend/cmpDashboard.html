@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMPANY DASHBOARD</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #7868e6;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .header-links {
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin: 2px;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        .header-links a:last-child::after {
+            content: "👤";
+            margin-left: 10px;
+        }
+
+        .logout-button {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #e63946;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .header-links:hover .logout-button {
+            display: block;
+        }
+
+        .dashboard-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
+
+        .dashboard-layer {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            margin-right: 40px;
+        }
+
+        .sidebar button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #4a47a3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.2em;
+        }
+
+        .sidebar button:hover {
+            background-color: #5a58d0;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .metric-box {
+            background-color: #4a47a3;
+            padding: 30px;
+            border-radius: 8px;
+            flex: 1;
+            margin: 0 15px;
+            text-align: center;
+        }
+
+        .metric-box h3 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .metric-box p {
+            font-size: 1.5em;
+        }
+
+        .footer {
+            background-color: #1a1a2e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            /* Space before footer */
+        }
+
+        .footer-line {
+            height: 2px;
+            background-color: white;
+            width: 100%;
+            /* Ensure it spans the full width */
+            margin: 20px 0;
+            /* Adjust top and bottom margin as needed */
+        }
+
+        .footer-section {
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 20px;
+            /* Add this line for spacing */
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 15px;
+            font-size: 1em;
+            border-top: 0.1px solid white;
+            /* This adds a white line to the top */
+            background-color: #1a1a2e;
+        }
+
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 2em;
+        }
+
+        .lg {
+            background-color: #e63946;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            margin: 2px 20px;
+            cursor: pointer;
+        }
+
+        .lg:hover {
+            background-color: #d62828;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>BIOGAS COMPANY DASHBOARD</h1>
+        <div class="header-links">
+            <a href="#">About</a>
+            <a href="#footer">Contact</a>
+            <!-- <a href="#"> 👤</a> -->
+            <button class="lg" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Dashboard Main Content -->
+    <div class="dashboard-container">
+        <div class="dashboard-layer">
+            <!-- Sidebar Section -->
+            <div class="sidebar">
+                <a href="cmpProfile.html">
+                    <button>👤 Manage Profile</button>
+                </a>
+                <a href="wasteList.html">
+                    <button>📦 Waste Listing</button>
+                </a>
+                <a href="currentOrders.html">
+                    <button>🛒 Current Orders</button>
+                </a>
+                <a href="cmpHistory.html">
+                    <button>📜 History</button>
+                </a>
+            </div>
+
+            <!-- Dashboard Metrics Section -->
+            <div class="content">
+                <h2>Dashboard Metrics</h2>
+                <div class="metrics">
+                    <div class="metric-box">
+                        <h3>Total Waste Listings</h3>
+                        <p>50</p>
+                    </div>
+                    <div class="metric-box">
+                        <h3>Total Current Orders</h3>
+                        <p>5</p>
+                    </div>
+                    <div class="metric-box">
+                        <h3>Total Order History</h3>
+                        <p>20</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer" id="footer">
+        <div class="social-icons">
+            <a href="#">X</a>
+            <a href="#">f</a>
+            <a href="#">in</a>
+            <a href="#">📷</a>
+        </div>
+        <div style="display: flex; justify-content: space-around; width: 100%; max-width: 800px;">
+            <div class="footer-section">
+                <h3>Support</h3>
+                <p>Call: 123-456-7890</p>
+                <p>Email: support@company.com</p>
+                <p>Social: @company</p>
+            </div>
+            <div class="footer-section">
+                <h3>Permalinks</h3>
+                <p><a href="#">Home</a></p>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Contact</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-line"></div> <!-- Line separating footer and copyright -->
+
+    <div class="copyright">&copy; 2024 COMPANY. All rights reserved.</div>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("jwt");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+
+</html>

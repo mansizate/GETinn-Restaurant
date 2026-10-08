@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Food Waste - FOOD WASTE GENERATOR DASHBOARD</title>
+    <style>
+        /* Keeping the base styles from the previous page */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #7868e6;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .header-links {
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin: 2px;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        .header-links a:last-child::after {
+            content: "👤";
+            margin-left: 10px;
+        }
+
+        .lg {
+            background-color: #e63946;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            margin: 2px 20px;
+            cursor: pointer;
+        }
+
+        .lg:hover {
+            background-color: #d62828;
+        }
+
+        /* New styles for the update form */
+        .update-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
+
+        .update-form-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #76c893;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #4a47a3;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1em;
+        }
+
+        select {
+            background-color: rgba(255, 255, 255, 0.1); /* Matching background color */
+            color: white; /* Text color */
+            border: 1px solid #4a47a3;
+        }
+
+        option {
+            background-color: #1a1a2e; /* Dark background for dropdown options */
+            color: white; /* White text */
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .image-upload-container {
+            border: 2px dashed #76c893;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .image-preview {
+            max-width: 300px;
+            max-height: 300px;
+            margin: 20px auto;
+            display: none;
+        }
+
+        .submit-btn {
+            background-color: #76c893;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #52b69a;
+        }
+
+        /* Footer styles remain the same */
+        .footer {
+            background-color: #1a1a2e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .upload-progress {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #4a47a3;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background-color: #76c893;
+            transition: width 0.3s ease;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background-color: #4a47a3;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag-remove {
+            cursor: pointer;
+            color: #e63946;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>FOOD WASTE GENERATOR DASHBOARD</h1>
+        <div class="header-links">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <button class="lg">Logout</button>
+        </div>
+    </div>
+
+    <!-- Update Form Section -->
+    <div class="update-container">
+        <div class="update-form-container">
+            <h2>Update Food Waste Details</h2>
+            <form id="updateForm" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="wasteType">Type of Food Waste</label>
+                    <select id="wasteType" required>
+                        <option value="">Select waste type</option>
+                        <option value="dairy">Dairy Products</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="bakery">Bakery Items</option>
+                        <option value="meat">Meat Products</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity (in kg)</label>
+                    <input type="number" id="quantity" min="0" step="0.1" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="expiryDate">Expiry Date (if applicable)</label>
+                    <input type="date" id="expiryDate" />
+                </div>
+
+                <div class="form-group">
+                    <label for="condition">Condition</label>
+                    <select id="condition" required>
+                        <option value="">Select condition</option>
+                        <option value="expired">Expired</option>
+                        <option value="nearExpiry">Near Expiry</option>
+                        <option value="surplus">Surplus</option>
+                        <option value="damaged">Damaged</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Images</label>
+                    <div class="image-upload-container">
+                        <input type="file" id="wasteImages" accept="image/*" multiple />
+                        <p>Drag & drop images here or click to select</p>
+                    </div>
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Detailed Description</label>
+                    <textarea id="description" placeholder="Provide detailed description of the food waste..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="storageConditions">Storage Conditions</label>
+                    <select id="storageConditions" required>
+                        <option value="">Select storage condition</option>
+                        <option value="refrigerated">Refrigerated</option>
+                        <option value="frozen">Frozen</option>
+                        <option value="roomTemp">Room Temperature</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tags</label>
+                    <input type="text" id="tagInput" placeholder="Add tags and press Enter" />
+                    <div class="tags-container" id="tagsContainer"></div>
+                </div>
+
+                <div class="upload-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Update Food Waste</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>© 2024 Food Waste Management System</p>
+    </div>
+
+    <script>
+        // JavaScript for handling image preview and tag input
+        document.getElementById('wasteImages').addEventListener('change', function () {
+            const fileList = this.files;
+            const imagePreview = document.getElementById('imagePreview');
+            imagePreview.innerHTML = '';
+
+            Array.from(fileList).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = file.name;
+                    img.style.maxWidth = '100%';
+                    img.style.maxHeight = '300px';
+                    imagePreview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        // JavaScript for handling tag input
+        document.getElementById('tagInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const tagValue = this.value.trim();
+                if (tagValue) {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag';
+                    tag.textContent = tagValue;
+                    tag.innerHTML += ' <span class="tag-remove">&times;</span>';
+                    document.getElementById('tagsContainer').appendChild(tag);
+                    this.value = ''; // Clear input
+
+                    // Remove tag on click
+                    tag.querySelector('.tag-remove').addEventListener('click', function () {
+                        tag.remove();
+                    });
+                }
+                e.preventDefault(); // Prevent form submission on Enter
+            }
+        });
+
+        // Submit form handler
+        document.getElementById('updateForm').addEventListener('submit', function () {
+            // Here you can add the AJAX logic to submit the form data
+            console.log('Form submitted');
+            // Display progress simulation
+            const progressFill = document.getElementById('progressFill');
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                progressFill.style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(interval);
+                }
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>

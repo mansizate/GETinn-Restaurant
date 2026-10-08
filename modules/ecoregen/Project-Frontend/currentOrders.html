@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Orders - Biogas Company Dashboard</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #7868e6;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .order-card {
+            background-color: #16213e;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s;
+            max-height: 400px;
+            box-sizing: border-box; /* To include padding and borders in the height calculation */
+        }
+        .order-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+        .order-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Ensures the content doesn't overflow */
+            flex-grow: 1; /* Makes the content flexible */
+            overflow: hidden; /* Prevents overflow */
+        }
+        .order-category {
+            background-color: #4a47a3;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .order-title {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .order-details {
+            font-size: 0.9em;
+            color: #b3b3b3;
+            margin-bottom: 10px;
+            word-wrap: break-word; /* Prevents text overflow */
+        }
+        .order-status {
+            font-size: 0.9em;
+            text-align: center;
+            padding: 10px;
+            border-radius: 0 0 15px 15px;
+            align-self: stretch;
+        }
+        .status-booked {
+            background-color: #e63946; /* Red for booked */
+            color: white;
+        }
+        .status-complete {
+            background-color: #2a9d8f; /* Green for complete */
+            color: white;
+        }
+        .order-card:hover {
+            transform: scale(1.05);
+        }
+        .lg {
+            background-color: #e63946;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            margin: 2px 20px;
+            cursor: pointer;
+        }
+        .lg:hover {
+            background-color: #d62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Current Orders</h1>
+        <div class="header-links">
+            <a href="cmpDashboard.html">Dashboard</a>
+            <button class="lg" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="order-grid">
+        <!-- Dynamically generated order cards will appear here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem("jwt"); // Assuming the JWT token is stored in localStorage
+            const ordersContainer = document.querySelector(".order-grid");
+
+            // Fetch the orders data
+            const response = await fetch("http://localhost:8080/bookedOrders", {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
+
+            if (response.ok) {
+                const orders = await response.json();
+
+                orders.forEach(async (order) => {
+                    // Create the order card dynamically
+                    const orderCard = document.createElement("div");
+                    orderCard.classList.add("order-card");
+
+                    // Dynamically fetch and add the image
+                    const imageResponse = await fetch(`http://localhost:8080/uploads/${order.imagePath}`, {
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                        }
+                    });
+
+                    if (imageResponse.ok) {
+                        const imageBlob = await imageResponse.blob();
+                        const imageUrl = URL.createObjectURL(imageBlob);
+
+                        const img = document.createElement("img");
+                        img.src = imageUrl;
+                        img.alt = order.type; // Use order type or a more suitable alt text
+                        img.classList.add("order-image");
+                        orderCard.appendChild(img);
+                    }
+
+                    // Add the content of the order (type, tags, etc.)
+                    const orderContent = document.createElement("div");
+                    orderContent.classList.add("order-content");
+
+                    const orderCategory = document.createElement("span");
+                    orderCategory.classList.add("order-category");
+                    orderCategory.textContent = order.type;
+
+                    const orderTitle = document.createElement("h2");
+                    orderTitle.classList.add("order-title");
+                    orderTitle.textContent = order.type; // Assuming the title is same as type
+
+                    const orderDetails = document.createElement("p");
+                    orderDetails.classList.add("order-details");
+                    orderDetails.innerHTML = `Order Date: ${new Date(order.orderDate).toLocaleDateString()}<br>Company: ${order.generatorName}<br>Quantity: ${order.quantity} kg`;
+
+                    orderContent.appendChild(orderCategory);
+                    orderContent.appendChild(orderTitle);
+                    orderContent.appendChild(orderDetails);
+
+                    // Add the order status
+                    const orderStatus = document.createElement("div");
+                    orderStatus.classList.add("order-status");
+
+                    // Dynamically set the status class based on the order status
+                    if (order.status === "BOOKED") {
+                        orderStatus.classList.add("status-booked");
+                    } else if (order.status === "COMPLETED") {
+                        orderStatus.classList.add("status-complete");
+                    }
+
+                    orderStatus.textContent = `Status: ${order.status}`;
+
+                    // Append everything to the order card
+                    orderCard.appendChild(orderContent);
+                    orderCard.appendChild(orderStatus);
+
+                    // Finally, append the order card to the container
+                    ordersContainer.appendChild(orderCard);
+                });
+            } else {
+                console.error("Failed to load orders");
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("jwt");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

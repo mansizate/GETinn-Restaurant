@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Food Waste Listings - FOOD WASTE GENERATOR DASHBOARD</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+        }
+
+        .header {
+            background-color: #76c893;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .main-container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filters {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            background-color: #4a47a3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background-color: #76c893;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .listing-card {
+            background-color: #252547;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .listing-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .listing-content {
+            padding: 20px;
+        }
+
+        .listing-category {
+            display: inline-block;
+            background-color: #4a47a3;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .listing-title {
+            font-size: 1.3em;
+            margin: 10px 0;
+            color: white;
+        }
+
+        .listing-details {
+            color: #a0a0a0;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .listing-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .company-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .book-button {
+            background-color: #76c893;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .book-button:hover {
+            background-color: #52b69a;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: #252547;
+            color: white;
+            font-size: 1em;
+        }
+
+        .search-input::placeholder {
+            color: #a0a0a0;
+        }
+
+
+        .footer {
+            background-color: #1a1a2e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            /* Space before footer */
+        }
+
+
+
+        .footer-section {
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 20px;
+            /* Add this line for spacing */
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 15px;
+            font-size: 1em;
+            border-top: 0.1px solid white;
+            /* This adds a white line to the top */
+            background-color: #1a1a2e;
+        }
+
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>FOOD WASTE LISTINGS</h1>
+        <div class="header-links">
+            <a href="cmpDashboard.html">Dashboard</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search food waste listings...">
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filters">
+            <button class="filter-button active">All</button>
+            <button class="filter-button">Dairy Products</button>
+            <button class="filter-button">Vegetables</button>
+            <button class="filter-button">Fruits</button>
+            <button class="filter-button">Bakery Items</button>
+            <button class="filter-button">Meat Products</button>
+        </div>
+
+        <!-- Listings Grid -->
+        <div id="listingsGrid" class="listings-grid"></div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <div class="social-icons">
+            <a href="#">X</a>
+            <a href="#">f</a>
+            <a href="#">in</a>
+            <a href="#">📷</a>
+        </div>
+        <div style="display: flex; justify-content: space-around; width: 100%; max-width: 800px;">
+            <div class="footer-section">
+                <h3>Support</h3>
+                <p>Call: 123-456-7890</p>
+                <p>Email: support@company.com</p>
+                <p>Social: @company</p>
+            </div>
+            <div class="footer-section">
+                <h3>Permalinks</h3>
+                <p><a href="#">Home</a></p>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Contact</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-line"></div> <!-- Line separating footer and copyright -->
+
+    <div class="copyright">&copy; 2024 COMPANY. All rights reserved.</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Check for the token in localStorage
+            const token = localStorage.getItem("jwt");
+    
+            // If token is missing, redirect to login page
+            if (!token) {
+                window.location.href = "login.html";
+                return; // Stop further execution
+            }
+    
+            try {
+                // Make the API call with the token in the Authorization header
+                const response = await fetch("http://localhost:8080/available-waste", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    displayWasteListings(data, token);
+                } else {
+                    console.error("Failed to fetch data:", response.status);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
+    
+        // Function to display waste listings in the desired format
+        function displayWasteListings(data, token) {
+            const listingsGrid = document.querySelector(".listings-grid");
+            listingsGrid.innerHTML = ""; // Clear any existing listings
+    
+            data.forEach(async (waste) => {
+                let imageUrl = "default-image.jpg"; // Default image if no image path is available
+    
+                // Check if an image path is available, then fetch the image
+                if (waste.imagePaths?.length > 0) {
+                    try {
+                        const imageResponse = await fetch(`http://localhost:8080/uploads/${waste.imagePaths[0]}`, {
+                            headers: {
+                                "Authorization": `Bearer ${token}`
+                            }
+                        });
+    
+                        if (imageResponse.ok) {
+                            imageUrl = URL.createObjectURL(await imageResponse.blob()); // Create a URL for the fetched image
+                        } else {
+                            console.error("Failed to fetch image:", imageResponse.status);
+                        }
+                    } catch (imageError) {
+                        console.error("Error fetching image:", imageError);
+                    }
+                }
+    
+                // Shorten the description if it's too long
+                const shortDescription = waste.description.length > 100
+                    ? waste.description.slice(0, 100) + "..."
+                    : waste.description;
+    
+                // Create the listing card with fetched image URL
+                const listingCard = `
+                    <div class="listing-card">
+                        <img src="${imageUrl}" alt="${waste.type}" class="listing-image">
+                        <div class="listing-content">
+                            <span class="listing-category">${waste.type}</span>
+                            <h3 class="listing-title">${waste.quantity} kg of ${waste.type}</h3>
+                            <p class="listing-details">
+                                ${shortDescription} <br>
+                                Expiry Date: ${waste.expiryDate} <br>
+                                Condition: ${waste.wasteCondition}
+                            </p>
+                            <div class="listing-meta">
+                                <button class="book-button" onclick="bookItem(${waste.id})">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+    
+                listingsGrid.insertAdjacentHTML("beforeend", listingCard);
+            });
+        }
+    
+        // Redirect to booking page
+        function bookItem(itemId) {
+            window.location.href = `bookItem.html?id=${itemId}`;
+        }
+    </script>
+    
+
+</body>
+
+</html>

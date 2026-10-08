@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOOD WASTE GENERATOR DASHBOARD</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #7868e6;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .header-links {
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin: 2px;
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        .header-links a:last-child::after {
+            content: "👤";
+            margin-left: 10px;
+        }
+
+        .logout-button {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #e63946;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .header-links:hover .logout-button {
+            display: block;
+        }
+
+        .dashboard-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px;
+        }
+
+        .dashboard-layer {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            margin-right: 40px;
+        }
+
+        .sidebar button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #4a47a3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.2em;
+        }
+
+        .sidebar button:hover {
+            background-color: #5a58d0;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        /* New styles for the waste list */
+        .waste-list {
+            background-color: #4a47a3;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .waste-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .waste-info {
+            flex-grow: 1;
+        }
+
+        .waste-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .update-btn {
+            background-color: #76c893;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .update-btn:hover {
+            background-color: #52b69a;
+        }
+
+        .footer {
+            background-color: #1a1a2e;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .footer-line {
+            height: 2px;
+            background-color: white;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .footer-section {
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 15px;
+            font-size: 1em;
+            border-top: 0.1px solid white;
+            background-color: #1a1a2e;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 2em;
+        }
+
+        .lg {
+            background-color: #e63946;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            margin: 2px 20px;
+            cursor: pointer;
+        }
+
+        .lg:hover {
+            background-color: #d62828;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>FOOD WASTE GENERATOR DASHBOARD</h1>
+        <div class="header-links">
+            <a href="#">About</a>
+            <a href="#footer">Contact</a>
+            <button class="lg" onclick="logout()">Logout</button>
+
+        </div>
+    </div>
+
+    <!-- Dashboard Main Content -->
+    <div class="dashboard-container">
+        <div class="dashboard-layer">
+            <!-- Sidebar Section -->
+            <div class="sidebar">
+                <a href="foodProfile.html">
+                    <button>👤 Manage Profile</button>
+                </a>
+                <a href="upload.html">
+                    <button>📦 Upload Food Waste</button>
+                </a>
+                <a href="foodHistory.html">
+                    <button>📜 History</button>
+                </a>
+                <a href="http://localhost:5000/" target="_blank">
+                    <button>🤖 Waste Prediction</button>
+                </a>
+
+            </div>
+
+            <!-- Dashboard List Section -->
+            <div class="content">
+                <h2>Food Waste List</h2>
+                <div class="waste-list" id="waste-list">
+                    <!-- Waste items will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer" id="footer">
+        <div class="social-icons">
+            <a href="#">X</a>
+            <a href="#">f</a>
+            <a href="#">in</a>
+            <a href="#">📷</a>
+        </div>
+        <div style="display: flex; justify-content: space-around; width: 100%; max-width: 800px;">
+            <div class="footer-section">
+                <h3>Support</h3>
+                <p>Call: 123-456-7890</p>
+                <p>Email: support@company.com</p>
+                <p>Social: @company</p>
+            </div>
+            <div class="footer-section">
+                <h3>Permalinks</h3>
+                <p><a href="#">Home</a></p>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Contact</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-line"></div>
+
+    <div class="copyright">&copy; 2024 COMPANY. All rights reserved.</div>
+
+    <script>
+        // Function to fetch the booked items
+        async function fetchBookedItems() {
+            try {
+                // Retrieve the JWT token from localStorage (or sessionStorage)
+                const token = localStorage.getItem('jwt'); // Or sessionStorage.getItem('jwt')
+    
+                if (!token) {
+                    // If no token is found, redirect to the login page
+                    alert('Please log in first');
+                    window.location.href = 'login.html'; // Redirect to login page
+                    return;
+                }
+    
+                const response = await fetch("http://localhost:8080/generator/bookings", {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Send JWT token in Authorization header
+                    }
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    const wasteListContainer = document.getElementById("waste-list");
+    
+                    // Clear existing content
+                    wasteListContainer.innerHTML = "";
+    
+                    // Loop through the fetched data
+                    data.forEach(item => {
+                        if (item.status !== "COMPLETED") { // Only show items that are not completed
+                            const wasteItem = document.createElement("div");
+                            wasteItem.classList.add("waste-item");
+                            
+                            wasteItem.innerHTML = `
+                                <div class="waste-info">
+                                    <h3>${item.type}</h3>
+                                    <p>Quantity: ${item.quantity} kg</p>
+                                    <p>Date: ${item.bookingDate}</p>
+                                </div>
+                                <div class="waste-actions">
+                                    <button class="update-btn" onclick="markAsCompleted(${item.id})">Done</button>
+                                </div>
+                            `;
+                            
+                            wasteListContainer.appendChild(wasteItem);
+                        }
+                    });
+                } else {
+                    alert("Failed to fetch waste bookings.");
+                }
+            } catch (error) {
+                console.error('Error fetching waste bookings:', error);
+            }
+        }
+    
+        // Function to mark an item as completed
+        async function markAsCompleted(orderId) {
+            try {
+                // Retrieve the JWT token from localStorage (or sessionStorage)
+                const token = localStorage.getItem('jwt'); // Or sessionStorage.getItem('jwt')
+    
+                if (!token) {
+                    // If no token is found, redirect to the login page
+                    alert('Please log in first');
+                    window.location.href = 'login.html'; // Redirect to login page
+                    return;
+                }
+    
+                const response = await fetch(`http://localhost:8080/generator/complete-order/${orderId}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Send JWT token in Authorization header
+                    }
+                });
+    
+                if (response.ok) {
+                    // Refresh the list after the status is updated
+                    fetchBookedItems();
+                } else {
+                    alert("Failed to mark the order as completed.");
+                }
+            } catch (error) {
+                console.error('Error completing order:', error);
+            }
+        }
+    
+        // Function to handle logout
+        function logout() {
+            // Remove the JWT token from localStorage (or sessionStorage)
+            localStorage.removeItem('jwt'); // Or sessionStorage.removeItem('jwt');
+    
+            // Redirect to login page after logging out
+            window.location.href = 'login.html';
+        }
+    
+        // Fetch the waste bookings when the page loads
+        document.addEventListener("DOMContentLoaded", fetchBookedItems);
+    </script>
+    
+</body>
+
+</html>

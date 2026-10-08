@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Registration</title>
+    
+    <style>
+        /* General Styles */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #2d2d4b;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: white;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4a47a3;
+            color: white;
+            font-size: 1em;
+        }
+
+        input[type="password"],
+        input[type="email"],
+        select {
+            background-color: #4a47a3;
+        }
+
+        button {
+            background-color: #e63946;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d62839;
+        }
+
+        .switch-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .switch-link a {
+            color: #e63946;
+            text-decoration: none;
+        }
+
+        .switch-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- Register Form -->
+        <div id="register-form">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label for="email">Email:</label>
+                <input type="email" id="registerEmail" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="registerPassword" name="password" required>
+
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="FOOD_WASTE_GENERATOR">Food Waste Generator</option>
+                    <option value="BIOGAS_COMPANY">Biogas Company</option>
+                </select>
+
+                <button type="submit">Register</button>
+            </form>
+            <p class="switch-link">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+            <p class="error" id="registerError"></p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="hidden">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="email">Email:</label>
+                <input type="email" id="loginEmail" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="loginPassword" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p class="switch-link">Don't have an account? <a href="#" id="switch-to-register">Register</a></p>
+            <p class="error" id="loginError"></p>
+        </div>
+    </div>
+
+    <script>
+        // Switching between forms (show and hide)
+        document.getElementById('switch-to-register').addEventListener('click', function() {
+            document.getElementById('register-form').classList.remove('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+        });
+
+        document.getElementById('switch-to-login').addEventListener('click', function() {
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('register-form').classList.add('hidden');
+        });
+
+        // Register logic with error handling
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const role = document.getElementById('role').value;
+            const registerError = document.getElementById('registerError');
+            registerError.textContent = ''; // Clear previous errors
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, role })
+                });
+
+                if (response.ok) {
+                    alert("Registration successful! Please login.");
+                    document.getElementById('register-form').classList.add('hidden');
+                    document.getElementById('login-form').classList.remove('hidden');
+                } else {
+                    const errorData = await response.json();
+                    registerError.textContent = errorData.message || 'Registration failed. Please try again.';
+                }
+            } catch (error) {
+                registerError.textContent = 'Network error. Please try again later.';
+            }
+        });
+
+        // Login logic with error handling
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const loginError = document.getElementById('loginError');
+            loginError.textContent = ''; // Clear previous errors
+
+            try {
+                const response = await fetch('http://localhost:8080/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const token = data.jwt;  // Assuming the JWT is sent as "token"
+                    localStorage.setItem('jwt', token);  // Save token to localStorage
+                    
+                    const userRole = data.role;  // Assuming the role is part of the login response
+
+                    // Redirect based on the role
+                    if (data.role === 'FOOD_WASTE_GENERATOR') {
+                        window.location.href = 'foodDashboard.html';  // Adjust URL as needed
+                    } else if (data.role === 'BIOGAS_COMPANY') {
+                        window.location.href = "cmpDashboard.html";  // Adjust URL as needed
+                    } else {
+                        window.location.href = "login.html";  // Default fallback
+                    }
+                } else {
+                    const errorData = await response.json();
+                    loginError.textContent = errorData.message || 'Login failed. Please check your credentials.';
+                }
+            } catch (error) {
+                loginError.textContent = 'Network error. Please try again later.';
+            }
+        });
+    </script>
+
+</body>
+</html>

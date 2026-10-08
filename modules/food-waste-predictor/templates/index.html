@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Food Waste Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        .main-container {
+            display: flex;
+            gap: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            width: 90%;
+            max-width: 1100px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .form-container {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .chart-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.4em;
+            font-weight: 700;
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subheading {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result-container {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .pie-heading {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+
+        .percentages {
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #444;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="form-container">
+            <h1>Food Waste Prediction</h1>
+            <div class="subheading">Estimate & Reduce Your Food Waste</div>
+
+            <form id="predictionForm">
+                <label for="household_size">Household Size:</label>
+                <input type="number" id="household_size" name="Household_Size" required>
+
+                <label for="number_of_meals">Number of Meals Prepared:</label>
+                <input type="number" id="number_of_meals" name="Number_of_Meals_Prepared" required>
+
+                <label for="food_type">Food Type:</label>
+                <select id="food_type" name="Food_Type" required>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Fruits">Fruits</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Dairy">Dairy</option>
+                    <option value="Grains">Grains</option>
+                </select>
+
+                <label for="shelf_life">Shelf Life (days):</label>
+                <input type="number" id="shelf_life" name="Shelf_Life" required>
+
+                <label for="purchase_quantity">Purchase Quantity (kg):</label>
+                <input type="number" id="purchase_quantity" step="0.01" name="Purchase_Quantity_kg" required>
+
+                <label for="consumed_quantity">Consumed Quantity (kg):</label>
+                <input type="number" id="consumed_quantity" step="0.01" name="Consumed_Quantity_kg" required>
+
+                <label for="storage_method">Storage Method:</label>
+                <select id="storage_method" name="Storage_Method" required>
+                    <option value="Refrigerator">Refrigerator</option>
+                    <option value="Freezer">Freezer</option>
+                    <option value="Room Temperature">Room Temperature</option>
+                </select>
+
+                <label for="reason_for_waste">Reason for Waste:</label>
+                <select id="reason_for_waste" name="Reason_for_Waste" required>
+                    <option value="Expired">Expired</option>
+                    <option value="Spoiled">Spoiled</option>
+                    <option value="Overcooked">Overcooked</option>
+                    <option value="Leftover">Leftover</option>
+                </select>
+
+                <button type="button" onclick="submitForm()">Predict Waste</button>
+            </form>
+
+            <div id="result-container">
+                Predicted Food Waste: <span id="result-value">--</span> kg
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="pie-heading">Consumption vs Waste</div>
+            <canvas id="pieChart" width="300" height="300"></canvas>
+            <div class="percentages" id="pie-percentage-text"></div>
+        </div>
+    </div>
+
+    <script>
+        let pieChart = null;
+
+        async function submitForm() {
+            const formData = {
+                Household_Size: parseFloat(document.getElementById('household_size').value),
+                Number_of_Meals_Prepared: parseFloat(document.getElementById('number_of_meals').value),
+                Food_Type: document.getElementById('food_type').value,
+                Shelf_Life: parseFloat(document.getElementById('shelf_life').value),
+                Purchase_Quantity_kg: parseFloat(document.getElementById('purchase_quantity').value),
+                Consumed_Quantity_kg: parseFloat(document.getElementById('consumed_quantity').value),
+                Storage_Method: document.getElementById('storage_method').value,
+                Reason_for_Waste: document.getElementById('reason_for_waste').value
+            };
+
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+            const predictedWaste = result.predicted_waste_kg;
+            document.getElementById('result-value').innerText = predictedWaste.toFixed(2);
+
+            // Pie Chart: Calculate % values
+            const consumed = formData.Consumed_Quantity_kg;
+            const purchased = formData.Purchase_Quantity_kg;
+            const waste = purchased - consumed;
+            const consumedPercent = ((consumed / purchased) * 100).toFixed(1);
+            const wastePercent = (100 - consumedPercent).toFixed(1);
+
+            // Update pie chart
+            updatePieChart(consumedPercent, wastePercent);
+        }
+
+        function updatePieChart(consumedPercent, wastePercent) {
+            const ctx = document.getElementById('pieChart').getContext('2d');
+
+            if (pieChart !== null) {
+                pieChart.destroy(); // Destroy old chart instance
+            }
+
+            pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Consumed', 'Wasted'],
+                    datasets: [{
+                        data: [consumedPercent, wastePercent],
+                        backgroundColor: ['#4CAF50', '#FF5252'],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('pie-percentage-text').innerText =
+                `Consumed: ${consumedPercent}% | Wasted: ${wastePercent}%`;
+        }
+    </script>
+</body>
+</html>
