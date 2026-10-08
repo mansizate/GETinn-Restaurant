@@ -1,5 +1,5 @@
 
-# 🍽️ GETinn -Tech That Feeds and Fules
+# 🍽️ GETinn — Tech That Feeds & Fuels
 
 > A multi-module software platform combining restaurant management, online food ordering, AI-based food-waste prediction, and sustainability-focused food-waste management.
 
