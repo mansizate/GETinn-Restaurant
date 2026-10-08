@@ -1,27 +1,27 @@
-# GETinn — Restaurant Web Application
+# GETinn - Restaurant Web Application
 
 GETinn is a web application developed as a team project for managing common restaurant activities such as browsing food items, placing orders, booking tables, and managing restaurant operations.
 
-The project includes both customer-facing features and an admin side for managing the application.
+The application has features for both customers and administrators.
 
-## What the application does
+## What the Application Does
 
 Customers can:
 
 - Browse food items and categories
-- Add items to the cart
+- Add food items to the cart
 - Place orders
 - Book restaurant tables
-- Choose between standard and VIP booking options
+- Choose VIP booking options
 - Manage their account
-- Receive order and account-related notifications
+- Receive email notifications
 - Get a PDF bill after an order
 
-The application also includes an admin section for managing users, orders, menu-related information, and website settings.
+The admin section provides tools for managing users, orders, menu information, bookings, and other website settings.
 
 ## Main Features
 
-### Customer
+### Customer Features
 
 - User registration and login
 - Email verification
@@ -36,74 +36,52 @@ The application also includes an admin section for managing users, orders, menu-
 - PDF bill generation
 - Feedback and contact features
 
-### Admin
+### Admin Features
 
 - Admin login
 - User management
 - Order management
 - Menu management
 - Booking management
-- Website page controls
-- Notification management
+- Website management
 
-## Technology Used
+## Technologies Used
 
-**Frontend**
+### Frontend
 
 - HTML
 - CSS
 - JavaScript
 
-**Backend**
+### Backend
 
 - PHP
 
-**Database**
+### Database
 
 - MySQL
+- phpMyAdmin
 
-**Other Tools / Libraries**
+### Libraries and Tools
 
 - PHPMailer
 - FPDF
-- phpMyAdmin
+- XAMPP
+- Git
+- GitHub
 
 ## Database
 
-The project uses MySQL for storing application data.
+The application uses MySQL to store information such as:
 
-Some of the main data areas include:
-
-- Registered users
+- Users
 - Menu items
 - Orders
 - Table bookings
 - VIP bookings
-- Admin configuration
+- Application data
 
-The SQL database file is included in this repository.
-
-## Project Structure
+The database file is included in the repository.
 
 ```text
-GETinn-Restaurant/
-│
-├── admin/
-├── assets/
-├── dashboard/
-├── event-booking/
-├── fpdf/
-├── includes/
-├── payment/
-├── PHPMailer/
-├── vip/
-│
-├── .gitignore
-├── GETINN DB.sql
-├── index.php
-├── login.php
-├── menu.php
-├── checkout.php
-├── table-booking.php
-├── vip-booking.php
-└── ...
+GETINN DB.sql
