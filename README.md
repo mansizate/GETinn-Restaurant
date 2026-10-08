@@ -706,41 +706,6 @@ The project demonstrates the application of:
 ---
 
 
-
-# 📂 Attribution
-
-Some components included in the sustainability modules are based on existing projects and are included with attribution.
-
-## EcoRegen
-
-Original repository:
-
-https://github.com/Kundan8126/EcoRegen
-
-Integrated location:
-
-```text
-modules/ecoregen/
-```
-
-## Food Waste Predictor
-
-Original repository:
-
-https://github.com/Kundan8126/Food-Waste-Predictor
-
-Integrated location:
-
-```text
-modules/food-waste-predictor/
-```
-
-For additional details, see:
-
-```text
-modules/ATTRIBUTION.md
-```
-
 ---
 
 # 👩‍💻 Developer
@@ -759,19 +724,3 @@ https://manseez-portfolio.netlify.app/
 
 ---
 
-# 📄 License
-
-This repository is maintained for educational, learning, development, and portfolio purposes.
-
-Please refer to the original project repositories and applicable licensing/attribution requirements for the components included under:
-
-```text
-modules/ecoregen/
-modules/food-waste-predictor/
-```
-
----
-
-<p align="center">
-
- three-module concept and attribution, so this version mainly makes the presentation much cleaner and more recruiter-friendly. Pasted text
