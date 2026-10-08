@@ -115,3 +115,227 @@ This repository represents my work with the GETinn Restaurant project.
                     │       Admin         │
                     │ Management Panel    │
                     └─────────────────────┘
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript |
+| Backend | PHP 8+ |
+| Database | MySQL 8+ |
+| Local Server | Apache |
+| Development Environment | XAMPP |
+| Version Control | Git & GitHub |
+
+---
+
+## 📂 Project Structure
+
+```text
+GETinn-Restaurant/
+│
+├── admin/              # Admin management functionality
+├── assets/             # Website assets
+├── css/                # Stylesheets
+├── js/                 # JavaScript functionality
+├── images/             # Images and media
+├── includes/           # Reusable PHP components
+├── database/           # Database / SQL files
+├── *.php               # Application pages
+└── README.md
+```
+
+> The exact structure may vary depending on the current project implementation.
+
+---
+
+## ⚙️ Local Setup
+
+### Prerequisites
+
+Make sure the following are installed:
+
+- XAMPP
+- PHP 8+
+- MySQL 8+
+- Git
+- A modern web browser
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/mansizate/GETinn-Restaurant.git
+```
+
+### 2. Move the Project to XAMPP
+
+Copy the project folder into:
+
+```text
+C:\xampp\htdocs\
+```
+
+The final path should look like:
+
+```text
+C:\xampp\htdocs\GETinn-Restaurant
+```
+
+### 3. Start XAMPP
+
+Open XAMPP Control Panel and start:
+
+```text
+Apache
+MySQL
+```
+
+### 4. Create the Database
+
+Open:
+
+```text
+http://localhost/phpmyadmin
+```
+
+Create the required database and import the SQL file included in the project.
+
+### 5. Configure Database Connection
+
+Check the project's PHP database configuration file and make sure the following values match your local MySQL setup:
+
+```text
+Host: localhost
+Username: root
+Password: your-local-password
+Database: taaza_db
+```
+
+> Do not commit real passwords, API keys, or other credentials to GitHub.
+
+### 6. Run the Application
+
+Open:
+
+```text
+http://localhost/GETinn-Restaurant/
+```
+
+---
+
+## 🧪 Testing & Verification
+
+The application has been tested in a local XAMPP environment.
+
+### Verified areas include:
+
+- Application startup through Apache
+- MySQL database connection
+- Customer registration and login flow
+- Menu browsing
+- Cart functionality
+- Ordering workflow
+- Table booking workflow
+- VIP booking functionality
+- Administrative functionality
+- PHP/MySQL integration
+
+Testing is performed locally using:
+
+```text
+Apache + PHP + MySQL + XAMPP
+```
+
+---
+
+## 🎯 Project Highlights
+
+GETinn demonstrates practical experience with:
+
+- Full-stack web application development
+- Server-side PHP programming
+- Relational database design with MySQL
+- CRUD operations
+- Authentication and session handling
+- Form processing and validation
+- Customer and admin workflows
+- Database-driven web applications
+- Local server configuration using XAMPP
+- Git-based version control
+- Debugging and troubleshooting
+
+---
+
+## 🔐 Security Considerations
+
+The project includes authentication and user-management functionality.
+
+For production deployment, additional security hardening should be considered, including:
+
+- Secure password hashing
+- Input validation and sanitization
+- SQL injection protection
+- CSRF protection
+- Secure session configuration
+- Environment-based configuration for credentials
+- HTTPS deployment
+
+---
+
+## 🚀 Future Improvements
+
+Potential improvements for future versions include:
+
+- Online payment gateway integration
+- REST API architecture
+- Real-time order status updates
+- Advanced restaurant analytics
+- Cloud deployment
+- Improved role-based access control
+- Automated testing
+- Enhanced security hardening
+- Mobile-first UI improvements
+
+---
+
+## 📚 Learning Outcomes
+
+Working with this project provided practical experience in:
+
+- PHP web development
+- MySQL database integration
+- Frontend development
+- Backend logic
+- Authentication workflows
+- CRUD operations
+- Debugging
+- Local server configuration
+- Git and GitHub
+- Understanding an existing codebase
+
+---
+
+## 👩‍💻 Developer
+
+**Mansi Zate**
+
+Computer Science / Information Technology Graduate
+
+GitHub:  
+https://github.com/mansizate
+
+Portfolio:  
+https://manseez-portfolio.netlify.app/
+
+---
+
+## ⭐ Project Status
+
+**Status:** Active Portfolio Project
+
+The project is being maintained and improved as part of my full-stack web development learning and portfolio development.
+
+---
+
+## 📄 License
+
+This repository is intended for educational, learning, and portfolio purposes.
