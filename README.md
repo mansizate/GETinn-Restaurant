@@ -1,158 +1,427 @@
-# 🍽️ GETinn Restaurant
 
-> A full-stack restaurant management and online ordering web application built to provide a smooth digital dining experience for customers and an efficient management system for restaurant administrators.
+# 🍽️ GETinn -Tech That Feeds and Fules
+
+> A multi-module software platform combining restaurant management, online food ordering, AI-based food-waste prediction, and sustainability-focused food-waste management.
+
+<p align="center">
 
 [![PHP](https://img.shields.io/badge/PHP-8+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![XAMPP](https://img.shields.io/badge/XAMPP-FB7A24?style=for-the-badge&logo=apachefriends&logoColor=white)](https://www.apachefriends.org/)
 
----
-
-## 📌 Project Overview
-
-GETinn Restaurant is a web-based restaurant management and ordering platform that connects customers with restaurant services through a centralized digital system.
-
-The application allows customers to:
-
-- 🍴 Explore restaurant menu items
-- 🛒 Add food items to a shopping cart
-- 📦 Place and manage orders
-- 🪑 Book restaurant tables
-- ⭐ Access VIP booking functionality
-- 👤 Create and manage user accounts
-- 📧 Receive account and application notifications
-- 🧾 Generate digital bills/receipts
-
-The project also includes an administrative interface for managing restaurant operations, users, orders, menu items, bookings and website functionality.
+</p>
 
 ---
 
-## ✨ Key Features
+## 📌 Overview
 
-### 👨‍🍳 Customer Features
+**GETinn** is a multi-module project that brings together three related areas:
 
-- Responsive restaurant website
-- User registration and login
-- Email verification
-- Password recovery
-- Dynamic food menu
-- Category-based menu browsing
-- Shopping cart
-- Order placement
-- Checkout workflow
-- Table reservation
-- VIP table booking
-- Membership/VIP functionality
-- Digital bill generation
-- Contact and feedback system
+- 🍽️ **Restaurant Management & Online Ordering**
+- 🤖 **AI-Based Food Waste Prediction**
+- 🌱 **Food Waste Management & Sustainability**
 
-### 🛠️ Admin Features
+The project explores how software engineering, databases, backend development, and machine learning can be applied across the food lifecycle.
 
-- Admin authentication
-- User management
-- Menu item management
-- Order management
-- Table booking management
-- VIP booking management
-- Customer feedback management
-- Website/page visibility controls
-- Admin messaging
-- Restaurant operation dashboard
-
----
-
-## 🧑‍💻 My Contribution
-
-This repository represents my work with the GETinn Restaurant project.
-
-### My focus areas include:
-
-- Understanding and working with the existing PHP application architecture
-- Configuring the project to run locally using XAMPP
-- Setting up and connecting the MySQL database
-- Testing customer-facing workflows
-- Testing authentication and ordering functionality
-- Debugging application and database issues
-- Improving project documentation and developer setup instructions
-- Working with Git and GitHub for project version control
-
-> **Note:** This project was originally developed as a collaborative/open-source base and has been customized and worked on as part of my development practice.
-
----
-
-## 🏗️ System Architecture
+### Food Lifecycle
 
 ```text
-                    ┌─────────────────────┐
-                    │       Customer      │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   GETinn Web App    │
-                    │   PHP + HTML/CSS/JS │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │    PHP Backend      │
-                    │ Authentication      │
-                    │ Orders              │
-                    │ Bookings            │
-                    │ Payments            │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │       MySQL         │
-                    │     taaza_db        │
-                    └─────────────────────┘
-                               ▲
-                               │
-                    ┌──────────┴──────────┐
-                    │       Admin         │
-                    │ Management Panel    │
-                    └─────────────────────┘
-
+🍽️ Restaurant Operations
+          ↓
+🍲 Food Consumption
+          ↓
+♻️ Food Waste
+          ↓
+🤖 Prediction & Analysis
+          ↓
+📊 Better Planning
+          ↓
+🌱 Sustainable Management
+          ↓
+🔥 Resource / Fuel Potential
 ```
-## 🛠️ Tech Stack
 
-| Layer | Technology |
+> The project demonstrates the software and sustainability concept. It does not claim that the current system physically produces fuel.
+
+---
+
+# 🚀 Project Modules
+
+## 🍽️ 1. GETinn Restaurant
+
+The main restaurant management and online ordering application.
+
+### Customer Features
+
+- 👤 User registration and login
+- 📧 Email verification
+- 🔐 Password recovery
+- 🍴 Restaurant menu browsing
+- 🏷️ Category-based menu
+- 🛒 Shopping cart
+- 📦 Food ordering
+- 💳 Checkout workflow
+- 🪑 Table reservation
+- ⭐ VIP table booking
+- 🎫 Membership/VIP functionality
+- 🧾 Digital bill generation
+- 📩 Contact and feedback
+
+### Admin Features
+
+- 🔐 Admin authentication
+- 👥 User management
+- 🍔 Menu management
+- 📦 Order management
+- 🪑 Table booking management
+- ⭐ VIP booking management
+- 💬 Customer feedback management
+- 📄 Website/page management
+- 📊 Restaurant operation management
+- 📩 Admin messaging
+
+### Technologies
+
+```text
+PHP
+HTML5
+CSS3
+JavaScript
+MySQL
+Apache
+XAMPP
+```
+
+---
+
+## 🌱 2. EcoRegen
+
+**EcoRegen** is the sustainability-focused module of the project.
+
+It explores digital management of food waste and its potential use as a sustainable resource.
+
+### Main Features
+
+- 🌱 Food-waste management
+- ♻️ Sustainable resource utilization
+- 🔥 Food-waste-to-resource/fuel concept
+- 👥 User and role management
+- 🔐 Authentication
+- 🌐 Backend APIs
+- 🗄️ Database integration
+- 💻 Sustainability-focused frontend
+
+### Technologies
+
+```text
+Java
+Spring Boot
+Maven
+MySQL
+HTML
+CSS
+JavaScript
+```
+
+### Location
+
+```text
+modules/ecoregen/
+```
+
+---
+
+## 🤖 3. Food Waste Predictor
+
+The **Food Waste Predictor** is the AI/ML module.
+
+It uses food-related data, trained models, and prediction pipelines to support food-waste prediction.
+
+### Features
+
+- 🤖 Machine-learning prediction
+- 📊 Food-waste dataset
+- 🧠 Trained ML models
+- 🔄 Prediction pipelines
+- 🐍 Python application
+- 🌐 Flask web interface
+- 📓 Jupyter notebooks
+- 📈 Data-processing workflow
+
+### Technologies
+
+```text
+Python
+Flask
+Machine Learning
+Pandas
+Jupyter Notebook
+HTML
+CSV
+Pickle-based ML models
+```
+
+### Location
+
+```text
+modules/food-waste-predictor/
+```
+
+---
+
+# 🌍 How the Project Fits Together
+
+The project follows a broader food-management and sustainability workflow:
+
+```text
+┌─────────────────────────────┐
+│     🍽️ GETinn Restaurant    │
+│                             │
+│ • Restaurant Management     │
+│ • Food Ordering             │
+│ • Table Booking             │
+│ • Customer Management       │
+└──────────────┬──────────────┘
+               │
+               ▼
+        🍲 Food Consumption
+               │
+               ▼
+          ♻️ Food Waste
+               │
+       ┌───────┴────────┐
+       │                │
+       ▼                ▼
+┌──────────────┐  ┌───────────────┐
+│ 🤖 Food Waste│  │ 🌱 EcoRegen   │
+│   Predictor  │  │               │
+│              │  │ Waste         │
+│ ML Prediction│  │ Management    │
+│ Data Analysis│  │ Sustainability│
+└──────────────┘  └───────────────┘
+```
+
+### Core Goals
+
+- ♻️ Reduce unnecessary food waste
+- 🤖 Predict food-waste patterns
+- 📊 Improve food and resource planning
+- 🌱 Digitally manage food waste
+- 🔄 Explore sustainable utilization
+- 🔥 Explore food waste as a potential resource/fuel input
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                         ┌─────────────────┐
+                         │    Customer     │
+                         └────────┬────────┘
+                                  │
+                                  ▼
+                    ┌─────────────────────────┐
+                    │   GETinn Restaurant     │
+                    │                         │
+                    │ PHP + HTML/CSS/JS       │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │         MySQL           │
+                    │   Restaurant Database   │
+                    └────────────┬────────────┘
+                                 │
+                                 ▼
+                           🍲 Food Data
+                                 │
+                                 ▼
+                           ♻️ Food Waste
+                                 │
+                    ┌────────────┴────────────┐
+                    │                         │
+                    ▼                         ▼
+          ┌──────────────────┐      ┌──────────────────┐
+          │ 🤖 Food Waste    │      │ 🌱 EcoRegen      │
+          │    Predictor     │      │                  │
+          │                  │      │ Java / Spring    │
+          │ Python / Flask   │      │ Boot / MySQL     │
+          │ ML Models        │      │ Sustainability   │
+          └──────────────────┘      └──────────────────┘
+```
+
+---
+
+# 🛠️ Technology Stack
+
+| Area | Technologies |
 |---|---|
-| Frontend | HTML5, CSS3, JavaScript |
-| Backend | PHP 8+ |
-| Database | MySQL 8+ |
-| Local Server | Apache |
-| Development Environment | XAMPP |
+| Restaurant Frontend | HTML5, CSS3, JavaScript |
+| Restaurant Backend | PHP 8+ |
+| Restaurant Database | MySQL 8+ |
+| Sustainability Backend | Java, Spring Boot |
+| Sustainability Database | MySQL |
+| AI/ML Application | Python, Flask |
+| Machine Learning | Trained ML Models, Prediction Pipelines |
+| Data Processing | Pandas, CSV |
+| Experimentation | Jupyter Notebook |
+| Local Server | Apache / XAMPP |
+| Build Tool | Maven |
 | Version Control | Git & GitHub |
 
 ---
 
-## 📂 Project Structure
+# 📂 Repository Structure
 
 ```text
 GETinn-Restaurant/
 │
-├── admin/              # Admin management functionality
-├── assets/             # Website assets
-├── css/                # Stylesheets
-├── js/                 # JavaScript functionality
-├── images/             # Images and media
-├── includes/           # Reusable PHP components
-├── database/           # Database / SQL files
-├── *.php               # Application pages
+├── admin/
+│   └── Restaurant administration
+│
+├── assets/
+│   └── Website assets
+│
+├── css/
+│   └── Stylesheets
+│
+├── js/
+│   └── JavaScript files
+│
+├── images/
+│   └── Website images and media
+│
+├── includes/
+│   └── Reusable PHP components
+│
+├── database/
+│   └── Database / SQL files
+│
+├── modules/
+│   │
+│   ├── ATTRIBUTION.md
+│   │
+│   ├── ecoregen/
+│   │   │
+│   │   ├── Project-Backend/
+│   │   │   └── Spring Boot backend
+│   │   │
+│   │   ├── Project-Frontend/
+│   │   │   └── EcoRegen frontend
+│   │   │
+│   │   └── Project_Images/
+│   │       └── EcoRegen assets
+│   │
+│   └── food-waste-predictor/
+│       │
+│       ├── app.py
+│       ├── templates/
+│       ├── *.pkl
+│       ├── *.csv
+│       └── *.ipynb
+│
+├── *.php
+│
 └── README.md
 ```
 
-> The exact structure may vary depending on the current project implementation.
+---
+
+# 👩‍💻 My Contribution
+
+My contribution focuses on **development, configuration, testing, debugging, integration, and documentation** across the project components.
+
+## GETinn Restaurant
+
+- Worked with the existing PHP application architecture
+- Configured the application using XAMPP
+- Connected the application with MySQL
+- Tested customer workflows
+- Tested authentication
+- Tested menu and cart functionality
+- Tested ordering workflows
+- Tested table booking
+- Debugged PHP and database-related issues
+- Worked with Git and GitHub
+- Improved project documentation
+
+## EcoRegen
+
+- Worked with the frontend and backend structure
+- Worked with the Spring Boot project
+- Worked with frontend pages and assets
+- Assisted with configuration and testing
+- Worked with database-related functionality
+- Integrated the module into the combined repository
+
+## Food Waste Predictor
+
+- Worked with the Python application
+- Worked with the Flask interface
+- Worked with machine-learning model files
+- Worked with prediction pipelines
+- Worked with food-waste datasets
+- Worked with Jupyter notebooks
+- Integrated the predictor into the combined repository
 
 ---
 
-## ⚙️ Local Setup
+# 🧠 Technical Skills Demonstrated
 
-### Prerequisites
+## Frontend Development
+
+- HTML5
+- CSS3
+- JavaScript
+- Responsive interfaces
+- Forms and user interfaces
+
+## Backend Development
+
+- PHP
+- Java
+- Spring Boot
+- Python
+- Flask
+- Backend/API concepts
+
+## Database
+
+- MySQL
+- Database connectivity
+- CRUD operations
+- Relational data management
+
+## AI / Machine Learning
+
+- Python
+- Data processing
+- Machine-learning models
+- Prediction pipelines
+- Dataset handling
+- Jupyter Notebook
+
+## Development Tools
+
+- Git
+- GitHub
+- XAMPP
+- Apache
+- Maven
+- VS Code
+- GitHub Codespaces
+
+---
+
+# ⚙️ Installation & Setup
+
+## Prerequisites
 
 Make sure the following are installed:
 
@@ -160,7 +429,14 @@ Make sure the following are installed:
 - PHP 8+
 - MySQL 8+
 - Git
-- A modern web browser
+- Python 3.x
+- Java 17+
+- Maven
+- Modern web browser
+
+---
+
+# 🍽️ GETinn Setup
 
 ### 1. Clone the Repository
 
@@ -168,15 +444,19 @@ Make sure the following are installed:
 git clone https://github.com/mansizate/GETinn-Restaurant.git
 ```
 
-### 2. Move the Project to XAMPP
+```bash
+cd GETinn-Restaurant
+```
 
-Copy the project folder into:
+### 2. Move to XAMPP
+
+Copy the project into:
 
 ```text
 C:\xampp\htdocs\
 ```
 
-The final path should look like:
+Final path:
 
 ```text
 C:\xampp\htdocs\GETinn-Restaurant
@@ -191,7 +471,7 @@ Apache
 MySQL
 ```
 
-### 4. Create the Database
+### 4. Configure MySQL
 
 Open:
 
@@ -199,11 +479,13 @@ Open:
 http://localhost/phpmyadmin
 ```
 
-Create the required database and import the SQL file included in the project.
+Create the required database and import the SQL/database files included in the project.
 
 ### 5. Configure Database Connection
 
-Check the project's PHP database configuration file and make sure the following values match your local MySQL setup:
+Check the PHP database configuration.
+
+Typical local configuration:
 
 ```text
 Host: localhost
@@ -212,9 +494,9 @@ Password: your-local-password
 Database: taaza_db
 ```
 
-> Do not commit real passwords, API keys, or other credentials to GitHub.
+> Never commit real passwords, API keys, tokens, or other credentials to GitHub.
 
-### 6. Run the Application
+### 6. Run GETinn
 
 Open:
 
@@ -224,100 +506,272 @@ http://localhost/GETinn-Restaurant/
 
 ---
 
-## 🧪 Testing & Verification
+# 🤖 Food Waste Predictor Setup
 
-The application has been tested in a local XAMPP environment.
+Navigate to:
 
-### Verified areas include:
+```bash
+cd modules/food-waste-predictor
+```
 
-- Application startup through Apache
-- MySQL database connection
-- Customer registration and login flow
+Install the required Python dependencies according to the project configuration.
+
+Run:
+
+```bash
+python app.py
+```
+
+The Flask application will display its local URL in the terminal.
+
+---
+
+# 🌱 EcoRegen Setup
+
+## Backend
+
+Location:
+
+```text
+modules/ecoregen/Project-Backend/
+```
+
+The backend is a Spring Boot application using Maven.
+
+## Frontend
+
+Location:
+
+```text
+modules/ecoregen/Project-Frontend/
+```
+
+The frontend contains the EcoRegen interface and related assets.
+
+> GETinn, EcoRegen, and Food Waste Predictor are maintained as separate application components inside the same repository. They are organized as a combined project/monorepo and are not presented as one single runtime application.
+
+---
+
+# 🧪 Testing & Verification
+
+## GETinn
+
+Verified areas include:
+
+- Application startup
+- Apache configuration
+- MySQL connectivity
+- User registration
+- User login
 - Menu browsing
-- Cart functionality
+- Shopping cart
 - Ordering workflow
-- Table booking workflow
-- VIP booking functionality
+- Table reservation
+- VIP booking
 - Administrative functionality
 - PHP/MySQL integration
 
-Testing is performed locally using:
+## EcoRegen
+
+Testing includes:
+
+- Frontend pages
+- Backend application
+- Spring Boot configuration
+- Application functionality
+- Database-related functionality
+
+## Food Waste Predictor
+
+Testing includes:
+
+- Python application
+- Flask interface
+- Model loading
+- Prediction workflow
+- Dataset handling
+- Prediction pipeline
+
+---
+
+# 🎯 Project Highlights
+
+### 🍽️ Restaurant Management
+
+Customer and admin workflows for restaurant operations, ordering, bookings, and menu management.
+
+### 🤖 AI-Based Food Waste Prediction
+
+Uses trained machine-learning models and data pipelines to support food-waste prediction.
+
+### 🌱 Sustainability
+
+Explores digital approaches to food-waste management and sustainable utilization.
+
+### 🔥 Food Waste → Resource/Fuel Concept
+
+Explores the potential of food waste as an input for sustainable resource and fuel-related applications.
+
+### 🔗 Multi-Technology Project
 
 ```text
-Apache + PHP + MySQL + XAMPP
+PHP
+   +
+Java / Spring Boot
+   +
+Python / Flask
+   +
+Machine Learning
+   +
+MySQL
+   +
+HTML / CSS / JavaScript
 ```
 
 ---
 
-## 🎯 Project Highlights
+# 📚 Learning Outcomes
 
-GETinn demonstrates practical experience with:
+This project provided practical experience in:
 
-- Full-stack web application development
-- Server-side PHP programming
-- Relational database design with MySQL
+- Full-stack web development
+- PHP development
+- Java Spring Boot development
+- Python development
+- Flask applications
+- Machine-learning workflows
+- MySQL database integration
 - CRUD operations
-- Authentication and session handling
-- Form processing and validation
-- Customer and admin workflows
-- Database-driven web applications
-- Local server configuration using XAMPP
-- Git-based version control
-- Debugging and troubleshooting
+- Authentication workflows
+- Backend/API concepts
+- Debugging existing codebases
+- Testing web applications
+- Dataset handling
+- Trained ML models
+- Git and GitHub
+- Multi-module project organization
+- Sustainability-focused software development
 
 ---
 
-## 🔐 Security Considerations
+# 🔐 Security Considerations
 
-The project includes authentication and user-management functionality.
+For production deployment, additional security hardening should be applied.
 
-For production deployment, additional security hardening should be considered, including:
+Recommended improvements include:
 
 - Secure password hashing
-- Input validation and sanitization
+- Input validation
+- Output sanitization
 - SQL injection protection
 - CSRF protection
-- Secure session configuration
-- Environment-based configuration for credentials
-- HTTPS deployment
+- Secure session management
+- API authentication
+- Environment variables for secrets
+- HTTPS
+- Secure database configuration
+- Proper access control
+
+> Never store passwords, API keys, JWT secrets, database credentials, or other private information in the repository.
 
 
 ---
 
-## 📚 Learning Outcomes
+# 🌟 Why This Project?
 
-Working with this project provided practical experience in:
+This project combines software engineering with a real-world sustainability problem.
 
-- PHP web development
-- MySQL database integration
-- Frontend development
-- Backend logic
-- Authentication workflows
-- CRUD operations
-- Debugging
-- Local server configuration
-- Git and GitHub
-- Understanding an existing codebase
+Rather than treating restaurant management and food waste as completely separate areas, the project explores a broader workflow:
+
+```text
+🍽️ Restaurant
+      ↓
+🍲 Food Consumption
+      ↓
+♻️ Food Waste
+      ↓
+🤖 Prediction
+      ↓
+📊 Better Planning
+      ↓
+🌱 Sustainable Management
+      ↓
+🔥 Resource / Fuel Potential
+```
+
+The project demonstrates the application of:
+
+**Web Development + Backend Engineering + Databases + AI/ML + Sustainability**
 
 ---
 
-## 👩‍💻 Developer
 
-**Mansi Zate**
 
-Computer Science / Information Technology Graduate
+# 📂 Attribution
 
-GitHub:  
+Some components included in the sustainability modules are based on existing projects and are included with attribution.
+
+## EcoRegen
+
+Original repository:
+
+https://github.com/Kundan8126/EcoRegen
+
+Integrated location:
+
+```text
+modules/ecoregen/
+```
+
+## Food Waste Predictor
+
+Original repository:
+
+https://github.com/Kundan8126/Food-Waste-Predictor
+
+Integrated location:
+
+```text
+modules/food-waste-predictor/
+```
+
+For additional details, see:
+
+```text
+modules/ATTRIBUTION.md
+```
+
+---
+
+# 👩‍💻 Developer
+
+## Mansi Zate
+
+**Computer Science / Information Technology Graduate**
+
+### GitHub
+
 https://github.com/mansizate
 
-Portfolio:  
+### Portfolio
+
 https://manseez-portfolio.netlify.app/
 
 ---
 
+# 📄 License
+
+This repository is maintained for educational, learning, development, and portfolio purposes.
+
+Please refer to the original project repositories and applicable licensing/attribution requirements for the components included under:
+
+```text
+modules/ecoregen/
+modules/food-waste-predictor/
+```
 
 ---
 
-## 📄 License
+<p align="center">
 
-This repository is intended for educational, learning, and portfolio purposes.
+ three-module concept and attribution, so this version mainly makes the presentation much cleaner and more recruiter-friendly. Pasted text
