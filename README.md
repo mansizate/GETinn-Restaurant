@@ -281,21 +281,6 @@ For production deployment, additional security hardening should be considered, i
 - Environment-based configuration for credentials
 - HTTPS deployment
 
----
-
-## 🚀 Future Improvements
-
-Potential improvements for future versions include:
-
-- Online payment gateway integration
-- REST API architecture
-- Real-time order status updates
-- Advanced restaurant analytics
-- Cloud deployment
-- Improved role-based access control
-- Automated testing
-- Enhanced security hardening
-- Mobile-first UI improvements
 
 ---
 
@@ -330,11 +315,6 @@ https://manseez-portfolio.netlify.app/
 
 ---
 
-## ⭐ Project Status
-
-**Status:** Active Portfolio Project
-
-The project is being maintained and improved as part of my full-stack web development learning and portfolio development.
 
 ---
 
